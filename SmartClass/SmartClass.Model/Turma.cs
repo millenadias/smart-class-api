@@ -13,3 +13,4 @@ namespace SmartClass.Model
         public List<Aula> Aulas { get; set; }
     }
 }
+    
