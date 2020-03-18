@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISmartClass", "APISmartCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartClass.Model", "SmartClass.Model\SmartClass.Model.csproj", "{699396B8-14E7-4399-AE01-8C750F492103}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartClass.BLL", "SmartClass.BLL\SmartClass.BLL.csproj", "{EAFC358C-4BB1-4399-91D3-316BD42CF559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartClass.DAL", "SmartClass.DAL\SmartClass.DAL.csproj", "{0E40B2DF-49EC-4DC1-A093-A0606CCC7908}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{699396B8-14E7-4399-AE01-8C750F492103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{699396B8-14E7-4399-AE01-8C750F492103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{699396B8-14E7-4399-AE01-8C750F492103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAFC358C-4BB1-4399-91D3-316BD42CF559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAFC358C-4BB1-4399-91D3-316BD42CF559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAFC358C-4BB1-4399-91D3-316BD42CF559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAFC358C-4BB1-4399-91D3-316BD42CF559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E40B2DF-49EC-4DC1-A093-A0606CCC7908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E40B2DF-49EC-4DC1-A093-A0606CCC7908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E40B2DF-49EC-4DC1-A093-A0606CCC7908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E40B2DF-49EC-4DC1-A093-A0606CCC7908}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
