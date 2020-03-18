@@ -10,7 +10,7 @@ using SmartClass.Model;
 namespace APISmartClass.Controllers
 {
     [Serializable]
-    public class SalaController: ApiController
+    public class SalaController : ApiController
     {
         [Route("professor/sistemas/salas")]
         [HttpGet]
@@ -18,4 +18,5 @@ namespace APISmartClass.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, new Sala());
         }
+    }
 }

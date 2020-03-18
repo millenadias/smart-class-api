@@ -93,3 +93,7 @@ C:\Users\viito\source\repos\SmartClass\APISmartClass\obj\Debug\APISmartClass.csp
 C:\Users\viito\source\repos\SmartClass\APISmartClass\obj\Debug\APISmartClass.csproj.CopyComplete
 C:\Users\viito\source\repos\SmartClass\APISmartClass\obj\Debug\APISmartClass.dll
 C:\Users\viito\source\repos\SmartClass\APISmartClass\obj\Debug\APISmartClass.pdb
+C:\Projetos\SmartClass\APISmartClass\obj\Debug\APISmartClass.csprojAssemblyReference.cache
+C:\Projetos\SmartClass\APISmartClass\obj\Debug\APISmartClass.csproj.CoreCompileInputs.cache
+C:\Projetos\SmartClass\APISmartClass\obj\Debug\APISmartClass.dll
+C:\Projetos\SmartClass\APISmartClass\obj\Debug\APISmartClass.pdb
