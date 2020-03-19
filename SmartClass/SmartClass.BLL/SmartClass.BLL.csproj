@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SmartClass.DAL\SmartClass.DAL.csproj" />
+    <ProjectReference Include="..\SmartClass.Model\SmartClass.Model.csproj" />
+  </ItemGroup>
+
 </Project>

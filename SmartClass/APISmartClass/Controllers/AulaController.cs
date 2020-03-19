@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SmartClass.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,19 +17,18 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage GetAulas()
         {
-            //usar a classe Aula que foi criada em SmartClass.Model - Aula.cs
-            Aula aula = new Aula();
             List<Aula> lstAula = new List<Aula>
             {
-               aula
+                new Aula { Sala = "B107", Hora = "21:00" },
+                new Aula { Sala = "B109", Hora = "22:00" }
             };
             return Request.CreateResponse(HttpStatusCode.OK, lstAula);
         }
 
-       /* public class Aula
+        public class Aula
         {
             public string Sala { get; set; }
             public string Hora { get; set; }
-        }*/
+        }
     }
 }

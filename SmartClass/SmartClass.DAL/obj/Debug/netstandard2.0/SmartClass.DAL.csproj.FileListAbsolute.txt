@@ -1,0 +1,12 @@
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\netstandard2.0\SmartClass.DAL.deps.json
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\netstandard2.0\SmartClass.DAL.dll
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\netstandard2.0\SmartClass.DAL.pdb
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\netstandard2.0\SmartClass.Model.dll
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\netstandard2.0\SmartClass.Model.pdb
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.csprojAssemblyReference.cache
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.csproj.CoreCompileInputs.cache
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.AssemblyInfoInputs.cache
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.AssemblyInfo.cs
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.csproj.CopyComplete
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.dll
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\netstandard2.0\SmartClass.DAL.pdb
