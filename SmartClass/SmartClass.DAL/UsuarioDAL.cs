@@ -12,7 +12,7 @@ namespace SmartClass.DAL
         public bool ValidarAcesso(String pDsLogin, String pDsSenha)
         {
             //String sql = "SELECT cd_usuario FROM USUARIO WHERE ds_login = '" + pDsLogin + "' AND ds_senha = '" + pDsSenha + "'";
-
+		//teste lucas primeiro commit
             return true; //retornar true ou false conforme acesso válido
         }
 
