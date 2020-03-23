@@ -9,25 +9,54 @@ namespace SmartClass.DAL
 {
     public class UsuarioDAL
     {
-        public bool ValidarAcesso(String pDsLogin, String pDsSenha)
+        public bool ValidarAcesso(string pConnectionString, String pDsLogin, String pDsSenha)
         {
-            //String sql = "SELECT cd_usuario FROM USUARIO WHERE ds_login = '" + pDsLogin + "' AND ds_senha = '" + pDsSenha + "'";
-		//teste lucas primeiro commit
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                string sql = "select cd_usuario from usuario"; // QUERY <<
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                var retorno = sqlComando.ExecuteScalar();
+                conn.Close();
+            }
             return true; //retornar true ou false conforme acesso válido
         }
 
-        public void Cadastrar(Usuario user)
+        public void Cadastrar(string pConnectionString, Usuario user)
         {
-
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                string sql = "select cd_usuario from usuario"; // QUERY <<
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                var retorno = sqlComando.ExecuteScalar();
+                conn.Close();
+            }
         }
 
-        public Usuario Get(int pCdUsuario)
+        public Usuario Get(string pConnectionString, int pCdUsuario)
         {
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                string sql = "select cd_usuario from usuario"; // QUERY <<
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                var retorno = sqlComando.ExecuteScalar();
+                conn.Close();
+            }
             return new Usuario();
         }
 
-        public List<Usuario> GetAlunosTurma(int pCdTurma)
+        public List<Usuario> GetAlunosTurma(string pConnectionString, int pCdTurma)
         {
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                string sql = "select cd_usuario from usuario"; // QUERY <<
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                var retorno = sqlComando.ExecuteScalar();
+                conn.Close();
+            }
             return new List<Usuario>();
         }
     }

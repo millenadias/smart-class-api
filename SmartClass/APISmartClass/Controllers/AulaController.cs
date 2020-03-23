@@ -22,6 +22,9 @@ namespace APISmartClass.Controllers
                 new Aula { Sala = "B107", Hora = "21:00" },
                 new Aula { Sala = "B109", Hora = "22:00" }
             };
+
+            string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
+
             return Request.CreateResponse(HttpStatusCode.OK, lstAula);
         }
 
