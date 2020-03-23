@@ -253,11 +253,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartClass.BLL\SmartClass.BLL.csproj">
-      <Project>{eafc358c-4bb1-4399-91d3-316bd42cf559}</Project>
+      <Project>{529F9A9F-D32D-45D0-B015-D82C2722396B}</Project>
       <Name>SmartClass.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SmartClass.Model\SmartClass.Model.csproj">
-      <Project>{699396b8-14e7-4399-ae01-8c750f492103}</Project>
+      <Project>{8E4255B6-3AF4-41E0-948C-0071256B1977}</Project>
       <Name>SmartClass.Model</Name>
     </ProjectReference>
   </ItemGroup>

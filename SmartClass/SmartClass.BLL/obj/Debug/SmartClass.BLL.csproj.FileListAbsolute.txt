@@ -1,0 +1,11 @@
+C:\Projetos\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.BLL.dll
+C:\Projetos\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.BLL.pdb
+C:\Projetos\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.DAL.dll
+C:\Projetos\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.Model.dll
+C:\Projetos\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.DAL.pdb
+C:\Projetos\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.Model.pdb
+C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csprojAssemblyReference.cache
+C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csproj.CoreCompileInputs.cache
+C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csproj.CopyComplete
+C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.dll
+C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.pdb

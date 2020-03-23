@@ -1,0 +1,6 @@
+C:\Projetos\SmartClass\SmartClass.Model\bin\Debug\SmartClass.Model.dll
+C:\Projetos\SmartClass\SmartClass.Model\bin\Debug\SmartClass.Model.pdb
+C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\SmartClass.Model.csprojAssemblyReference.cache
+C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\SmartClass.Model.csproj.CoreCompileInputs.cache
+C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\SmartClass.Model.dll
+C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\SmartClass.Model.pdb

@@ -1,9 +1,0 @@
-C:\Projetos\SmartClass\SmartClass.Model\bin\Debug\netstandard2.0\SmartClass.Model.deps.json
-C:\Projetos\SmartClass\SmartClass.Model\bin\Debug\netstandard2.0\SmartClass.Model.dll
-C:\Projetos\SmartClass\SmartClass.Model\bin\Debug\netstandard2.0\SmartClass.Model.pdb
-C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\netstandard2.0\SmartClass.Model.csprojAssemblyReference.cache
-C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\netstandard2.0\SmartClass.Model.csproj.CoreCompileInputs.cache
-C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\netstandard2.0\SmartClass.Model.AssemblyInfoInputs.cache
-C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\netstandard2.0\SmartClass.Model.AssemblyInfo.cs
-C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\netstandard2.0\SmartClass.Model.dll
-C:\Projetos\SmartClass\SmartClass.Model\obj\Debug\netstandard2.0\SmartClass.Model.pdb

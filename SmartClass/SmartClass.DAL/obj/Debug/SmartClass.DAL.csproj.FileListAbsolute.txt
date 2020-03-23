@@ -1,0 +1,9 @@
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.DAL.dll
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.DAL.pdb
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.Model.dll
+C:\Projetos\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.Model.pdb
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csprojAssemblyReference.cache
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csproj.CoreCompileInputs.cache
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csproj.CopyComplete
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.dll
+C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.pdb
