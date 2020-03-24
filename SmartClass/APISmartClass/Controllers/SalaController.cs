@@ -12,12 +12,13 @@ namespace APISmartClass.Controllers
     public class SalaController : ApiController
     {
         SalaBLL bll = new SalaBLL();
+        string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
 
         [Route("sala/ListarSalas")]
         [HttpGet]
         public HttpResponseMessage ListarSalas()
         {
-            List<Sala> Lista = bll.ListarSalas();
+            List<Sala> Lista = bll.ListarSalas(connection);
             return Request.CreateResponse(HttpStatusCode.OK, Lista);
         }
 

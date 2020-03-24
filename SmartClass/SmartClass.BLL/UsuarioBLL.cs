@@ -11,24 +11,29 @@ namespace SmartClass.BLL
     public class UsuarioBLL
     {
         UsuarioDAL dal = new UsuarioDAL();
-        public bool ValidarAcesso(String pDsLogin, String pDsSenha)
+        public String connectionString = "";
+        public bool ValidarAcesso(String pDsLogin, String pDsSenha, String pConnectionString)
         {
-            return dal.ValidarAcesso(pDsLogin, pDsSenha);
+            return dal.ValidarAcesso(pDsLogin, pDsSenha, pConnectionString);
         }
 
-        public void Cadastrar(Usuario user)
+        public void Cadastrar(Usuario user, String pConnectionString)
         {
-            dal.Cadastrar(user);
+            dal.Cadastrar(user, pConnectionString);
         }
 
-        public Usuario Get(int pCdUsuario)
+        public void Alterar(Usuario user, String pConnectionString)
         {
-            return dal.Get(pCdUsuario);
+            dal.Alterar(user, pConnectionString);
+        }
+        public Usuario Get(int pCdUsuario, String pConnectionString)
+        {
+            return dal.Get(pCdUsuario, pConnectionString);
         }
 
-        public List<Usuario> GetAlunosTurma(int pCdTurma)
+        public List<Usuario> GetAlunosTurma(int pCdTurma, String pConnectionString)
         {
-            return dal.GetAlunosTurma(pCdTurma);
+            return dal.GetAlunosTurma(pCdTurma, pConnectionString);
         }
     }
 }

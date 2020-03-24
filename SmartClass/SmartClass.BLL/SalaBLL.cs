@@ -11,9 +11,9 @@ namespace SmartClass.BLL
     public class SalaBLL
     {
         SalaDAL dal = new SalaDAL();
-        public List<Sala> ListarSalas()
+        public List<Sala> ListarSalas(String pConnectionString)
         {
-            return dal.ListarSalas();
+            return dal.ListarSalas(pConnectionString);
         }
 
         public List<Equipamento> ListarEquipamentos(int codSala)
