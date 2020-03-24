@@ -3,17 +3,60 @@ using System.Web.Http;
 using System.Net.Http;
 using System.Net;
 using SmartClass.Model;
+using SmartClass.BLL;
+using System.Collections.Generic;
 
 namespace APISmartClass.Controllers
 {
     [Serializable]
     public class SalaController : ApiController
     {
-        [Route("professor/sistemas/salas")]
+        SalaBLL bll = new SalaBLL();
+
+        [Route("sala/ListarSalas")]
         [HttpGet]
-        public HttpResponseMessage GetSalas()
+        public HttpResponseMessage ListarSalas()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, new Sala());
+            List<Sala> Lista = bll.ListarSalas();
+            return Request.CreateResponse(HttpStatusCode.OK, Lista);
+        }
+
+
+        [Route("sala/ListarEquipamentos")]
+        [HttpGet]
+        public HttpResponseMessage ListarEquipamentos(int codSala)
+        {
+            List<Equipamento> ListaEquipamento = bll.ListarEquipamentos(codSala);
+            return Request.CreateResponse(HttpStatusCode.OK, ListaEquipamento);
+        }
+
+
+        /*  [Route("sala/verificarDisponibilidade")]
+          [HttpGet]
+          public HttpRequestMessage verificarDisponibilidade(int codSala, string horario)
+          {
+              bool disponivel = bll.verificarDisponibilidade(codSala, horario);
+              return Request.CreateResponse(HttpStatusCode.OK, disponivel);
+
+          }*/
+
+        [Route("sala/getSala")]
+        [HttpGet]
+        public HttpResponseMessage getSala (int cdSala)
+        {
+            Sala sala = bll.getSala(cdSala);
+            return Request.CreateResponse(HttpStatusCode.OK, sala);
+
+        }
+
+        public void cadastrarEquipamento(int codEquipamento, int codSala)
+        {
+            //dal.cadastrarEquipamento(codEquipamento, codSala);
+        }
+
+        public void excluirEquipamento(int codEquipamentoSala)
+        {
+            //dal.excluirEquipamento(codEquipamentoSala);
         }
     }
 }

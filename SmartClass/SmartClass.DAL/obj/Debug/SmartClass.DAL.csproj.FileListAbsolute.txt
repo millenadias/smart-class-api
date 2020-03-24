@@ -7,3 +7,12 @@ C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csproj.CoreCompil
 C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csproj.CopyComplete
 C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.dll
 C:\Projetos\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.DAL.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.DAL.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.Model.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\bin\Debug\SmartClass.Model.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csprojAssemblyReference.cache
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csproj.CoreCompileInputs.cache
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.csproj.CopyComplete
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.DAL\obj\Debug\SmartClass.DAL.pdb

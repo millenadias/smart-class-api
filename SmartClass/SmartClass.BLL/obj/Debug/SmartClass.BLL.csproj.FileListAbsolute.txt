@@ -9,3 +9,14 @@ C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csproj.CoreCompil
 C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csproj.CopyComplete
 C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.dll
 C:\Projetos\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csprojAssemblyReference.cache
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csproj.CoreCompileInputs.cache
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.BLL.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.BLL.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.DAL.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.Model.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.DAL.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\bin\Debug\SmartClass.Model.pdb
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.csproj.CopyComplete
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.dll
+C:\projetos\smart-class-api\SmartClass\SmartClass.BLL\obj\Debug\SmartClass.BLL.pdb
