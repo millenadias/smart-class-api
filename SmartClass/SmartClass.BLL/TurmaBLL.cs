@@ -11,34 +11,31 @@ namespace SmartClass.BLL
     public class TurmaBLL
     {
         TurmaDAL dal = new TurmaDAL();
-        public void Inserir(Turma turma)
+        public void Inserir(Turma turma, String pConnectionString)
         {
-            dal.Inserir(turma);
+            dal.Inserir(turma, pConnectionString);
         }
 
-        public void InserirAlunoTurma(int pCdAluno, int pCdTurma)
+        public void InserirAlunoTurma(int pCdAluno, int pCdTurma, String pConnectionString)
         {
-            dal.InserirAlunoTurma(pCdAluno, pCdTurma);
+            dal.InserirAlunoTurma(pCdAluno, pCdTurma, pConnectionString);
         }
 
-        public void ExcluirTurma(int pCdTurma)
+        public void ExcluirTurma(int pCdTurma,String pConnectionString)
         {
-            dal.ExcluirTurma(pCdTurma);
+            dal.ExcluirTurma(pCdTurma, pConnectionString);
         }
 
-        public void AlterarTurma(Turma turma)
+        public void AlterarTurma(Turma turma, String pConnectionString)
         {
-            dal.AlterarTurma(turma);
+            dal.AlterarTurma(turma, pConnectionString);
         }
 
-        public List<Turma> ListarTurmas()
+        public List<Turma> ListarTurmas(String pConnectionString)
         {
-            return dal.ListarTurmas();
+            return dal.ListarTurmas(pConnectionString);
         }
 
-        public List<Usuario> ListarAlunosTurma(int pCdTurma)
-        {
-            return dal.ListarAlunosTurma(pCdTurma);
-        }
+       
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SmartClass.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,52 +10,89 @@ namespace SmartClass.DAL
 {
     public class TurmaDAL
     {
-        public void Inserir(Turma turma)
+        public void Inserir(Turma turma, String pConnectionString)
         { 
-            String sql = "INSERT INTO TURMA(ds_turma, ds_turno) " +
-                         "VALUES('" + turma.DsTurma + "', '" + turma.DsTurno + "')";
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " INSERT INTO TURMA(ds_turma, ds_turno) " +
+                             " VALUES('" + turma.DsTurma + "', '" + turma.DsTurno + "')";
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
-        public void InserirAlunoTurma(int pCdAluno, int pCdTurma)
+        public void InserirAlunoTurma(int pCdAluno, int pCdTurma, String pConnectionString)
         { 
-            String sql = " INSERT INTO USUARIO_TURMA(cd_usuario, cd_turma) " +
-                         " VALUES(" + pCdTurma + ", " + pCdTurma + ")";
+
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " INSERT INTO USUARIO_TURMA(cd_usuario, cd_turma) " +
+                             " VALUES(" + pCdAluno + ", " + pCdTurma + ")";
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
-        public void ExcluirTurma(int pCdTurma)
+        public void ExcluirTurma(int pCdTurma, String pConnectionString)
         {
-            String sqlAlunoTurma = " DELETE FROM USUARIO_TURMA WHERE cd_turma = " + pCdTurma;
-            String sql = " DELETE FROM TURMA WHERE cd_turma = " + pCdTurma;
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+
+                String sqlAlunoTurma = " DELETE FROM USUARIO_TURMA WHERE cd_turma = " + pCdTurma;
+                System.Data.SqlClient.SqlCommand sqlComandoUsuarioTurma = new System.Data.SqlClient.SqlCommand(sqlAlunoTurma, conn);
+                sqlComandoUsuarioTurma.ExecuteNonQuery();
+
+                String sql = " DELETE FROM TURMA WHERE cd_turma = " + pCdTurma;
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
+
         }
 
-        public void AlterarTurma(Turma turma)
+        public void AlterarTurma(Turma turma, String pConnectionString)
         {
-            String sql = " UPDATE TURMA SET ds_turma = '" + turma.DsTurma + "', ds_turno = '" + turma.DsTurno + "'";
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " UPDATE TURMA SET ds_turma = '" + turma.DsTurma + "', ds_turno = '" + turma.DsTurno + "'" +
+                             " WHERE cd_turma = " + turma.CdTurma;
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
-        public List<Turma> ListarTurmas()
+        public List<Turma> ListarTurmas(String pConnectionString)
         {
-            String sql = " SELECT * FROM TURMA";
-            return new List<Turma>();
+            List<Turma> lstTurmas = new List<Turma>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " SELECT * FROM TURMA";
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                DbDataReader dr = sqlComando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Turma info = new Turma();
+                    info.CdTurma = int.Parse(dr["cd_turma"].ToString());
+                    info.DsTurma = dr["ds_turma"].ToString();
+                    info.DsTurno = dr["ds_turno"].ToString();
+                    lstTurmas.Add(info);
+                }
+                conn.Close();
+            }
+            return lstTurmas;
         }
-
-        public List<Usuario> ListarAlunosTurma(int pCdTurma)
-        {
-            String sql = " SELECT * FROM USUARIO u " +
-                         " INNER JOIN USUARIO_TURMA ut ON ut.cd_usuario = u.cd_usuario " +
-                         " WHERE ut.cd_turma = " + pCdTurma;
-            /* using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
-             {
-                 conn.Open();
-                 string sql = "select cd_usuario from usuario"; // QUERY <<
-                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
-                 var retorno = sqlComando.ExecuteScalar();
-                 conn.Close();
-             }*/
-            return new List<Usuario>();
-        }
-
-
-
     }
 }

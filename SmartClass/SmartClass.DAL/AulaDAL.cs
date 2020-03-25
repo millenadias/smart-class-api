@@ -91,5 +91,22 @@ namespace SmartClass.DAL
                 conn.Close();
             }
         }
+
+        public List<Equipamento> cadastrarPreferenciaAula(int CdEquipamento, int CdAula, string DsEquipamento, string pConnectionString)
+        {
+            List<Equipamento> cadastrarPreferenciaAula = new List<Equipamento>();
+
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " INSERT INTO PREFERENCIA_AULA (cd_aula, cd_equipamento, ds_equipamento) " +
+                             " VALUES(" + CdEquipamento + "," + DsEquipamento + "," + CdAula + ")";
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
+            return cadastrarPreferenciaAula;
+        }
+
     }
 }

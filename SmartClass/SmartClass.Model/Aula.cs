@@ -18,14 +18,11 @@ namespace SmartClass.Model
         public object listarAulas()
         {
             throw new NotImplementedException();
-            //deve ficar aqui?
         }
 
         public Sala Sala { get; set; }
-        //deve ficar aqui?
 
         public List<Equipamento> Preferencias { get; set; }
-        //deve ficar aqui?
 
     }
 }

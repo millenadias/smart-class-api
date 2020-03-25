@@ -29,6 +29,10 @@ namespace SmartClass.BLL
             dal.cadastrarAula(CdAula, CdDisciplina, pConnectionString);
         }
 
+        public void cadastrarPreferenciaAula(int CdAula, int CdEquipamento, string DsEquipamento, String pConnectionString)
+        {
+            dal.cadastrarPreferenciaAula(CdAula, CdEquipamento, DsEquipamento, pConnectionString);
+        }
 
 
         public void excluirAula(int CdAula, String pConnectionString)

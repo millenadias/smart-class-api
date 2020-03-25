@@ -42,10 +42,16 @@ namespace APISmartClass.Controllers
         public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
         {
             bll.cadastrarAula(CdAula, CdDisciplina, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Aula cadastrada");
+            return Request.CreateResponse(HttpStatusCode.OK, "A aula foi cadastrada!");
         }
 
-
+        [Route("aula/cadastrarPreferenciaAula")]
+        [HttpPost]
+        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento, string DsEquipamento, int CdDisciplina)
+        {
+            bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, DsEquipamento, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
+        }
 
         [Route("aula/excluirAula")]
         [HttpDelete]
