@@ -46,13 +46,6 @@ namespace APISmartClass.Controllers
         }
 
 
-        [Route("aula/editarAula")]
-        [HttpGet]
-        public HttpResponseMessage editarAula()
-        {
-            //inserir editarAula
-        }
-
         [Route("aula/excluirAula")]
         [HttpGet]
         public HttpResponseMessage excluirAula(int CdAula)

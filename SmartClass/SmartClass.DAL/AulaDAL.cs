@@ -37,7 +37,7 @@ namespace SmartClass.DAL
                 }
                 conn.Close();
             }
-            return listarAulas
+            return listarAulas;
 
             //verificar se deverá criar outro metodo de listarDisciplinas
         }
