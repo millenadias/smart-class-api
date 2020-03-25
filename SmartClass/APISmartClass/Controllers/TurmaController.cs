@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace APISmartClass.Controllers
 {
     [Serializable]
-    public class TurmaController: ApiController
+    public class TurmaController : ApiController
     {
         string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
 
@@ -21,34 +21,62 @@ namespace APISmartClass.Controllers
         [HttpPost]
         public HttpResponseMessage Inserir(Turma turma)
         {
-            bll.Inserir(turma, connection);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            try
+            {
+                bll.Inserir(turma, connection);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("turma/InserirAlunoTurma")]
         [HttpPost]
         public HttpResponseMessage InserirAlunoTurma(int pCdAluno, int pCdTurma)
         {
-            bll.InserirAlunoTurma(pCdAluno, pCdTurma, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Aluno cadastrado para a turma");
+            try
+            {
+                bll.InserirAlunoTurma(pCdAluno, pCdTurma, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Aluno cadastrado para a turma");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("turma/AlterarTurma")]
         [HttpPut]
         public HttpResponseMessage AlterarTurma(Turma turma)
         {
-            bll.AlterarTurma(turma, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Turma alterada");
+            try
+            {
+                bll.AlterarTurma(turma, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Turma alterada");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("turma/ListarTurmas")]
         [HttpGet]
         public HttpResponseMessage ListarTurmas()
         {
-            List<Turma> turmas = bll.ListarTurmas(connection);
-            return Request.CreateResponse(HttpStatusCode.OK, turmas);
+            try
+            {
+                List<Turma> turmas = bll.ListarTurmas(connection);
+                return Request.CreateResponse(HttpStatusCode.OK, turmas);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
-        
+
     }
 }
