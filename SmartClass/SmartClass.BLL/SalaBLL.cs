@@ -11,36 +11,36 @@ namespace SmartClass.BLL
     public class SalaBLL
     {
         SalaDAL dal = new SalaDAL();
-        public List<Sala> ListarSalas()
+        public List<Sala> ListarSalas(String pConnectionString)
         {
-            return dal.ListarSalas();
+            return dal.ListarSalas(pConnectionString);
         }
 
-        public List<Equipamento> ListarEquipamentos(int codSala)
+        public List<Equipamento> ListarEquipamentos(int codSala, String pConnectionString)
         {
-            return dal.ListarEquipamentos(codSala);
-
-        }
-
-        public bool verificarDisponibilidade(int codSala, string horario)
-        {
-            return dal.verificarDisponibilidade(codSala, horario);
-        }
-
-        public Sala getSala(int cdSala)
-        {
-            return dal.getSala(cdSala);
+            return dal.ListarEquipamentos(codSala, pConnectionString);
 
         }
 
-        public void cadastrarEquipamento(int codEquipamento, int codSala)
+        public bool verificarDisponibilidade(int codSala, string horario, string pConnectionString)
         {
-            dal.cadastrarEquipamento(codEquipamento, codSala);
+            return dal.verificarDisponibilidade(codSala, horario, pConnectionString);
         }
 
-        public void excluirEquipamento(int codEquipamentoSala)
+        public Sala getSala(int cdSala, string pConnectionString)
         {
-            dal.excluirEquipamento(codEquipamentoSala);
+            return dal.getSala(cdSala, pConnectionString);
+
+        }
+
+        public void cadastrarEquipamento(int codEquipamento, int codSala, string pConnectionString)
+        {
+            dal.cadastrarEquipamento(codEquipamento, codSala, pConnectionString);
+        }
+
+        public void excluirEquipamento(int codEquipamentoSala, string pConnectionString)
+        {
+            dal.excluirEquipamento(codEquipamentoSala, pConnectionString);
         }
     }
 }

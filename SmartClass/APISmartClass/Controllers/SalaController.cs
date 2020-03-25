@@ -12,12 +12,13 @@ namespace APISmartClass.Controllers
     public class SalaController : ApiController
     {
         SalaBLL bll = new SalaBLL();
+        string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
 
         [Route("sala/ListarSalas")]
         [HttpGet]
         public HttpResponseMessage ListarSalas()
         {
-            List<Sala> Lista = bll.ListarSalas();
+            List<Sala> Lista = bll.ListarSalas(connection);
             return Request.CreateResponse(HttpStatusCode.OK, Lista);
         }
 
@@ -26,37 +27,43 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage ListarEquipamentos(int codSala)
         {
-            List<Equipamento> ListaEquipamento = bll.ListarEquipamentos(codSala);
+            List<Equipamento> ListaEquipamento = bll.ListarEquipamentos(codSala, connection);
             return Request.CreateResponse(HttpStatusCode.OK, ListaEquipamento);
         }
 
 
-        /*  [Route("sala/verificarDisponibilidade")]
-          [HttpGet]
-          public HttpRequestMessage verificarDisponibilidade(int codSala, string horario)
-          {
-              bool disponivel = bll.verificarDisponibilidade(codSala, horario);
-              return Request.CreateResponse(HttpStatusCode.OK, disponivel);
+        [Route("sala/verificarDisponibilidade")]
+        [HttpGet]
+        public HttpResponseMessage verificarDisponibilidade(int codSala, string horario)
+        {
+            bool disponivel = bll.verificarDisponibilidade(codSala, horario, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, disponivel);
 
-          }*/
+        }
 
         [Route("sala/getSala")]
         [HttpGet]
-        public HttpResponseMessage getSala (int cdSala)
+        public HttpResponseMessage getSala(int cdSala)
         {
-            Sala sala = bll.getSala(cdSala);
+            Sala sala = bll.getSala(cdSala, connection);
             return Request.CreateResponse(HttpStatusCode.OK, sala);
 
         }
 
-        public void cadastrarEquipamento(int codEquipamento, int codSala)
+        [Route("sala/cadastrarEquipamento")]
+        [HttpPost]
+        public HttpResponseMessage cadastrarEquipamento(int codEquipamento, int codSala)
         {
-            //dal.cadastrarEquipamento(codEquipamento, codSala);
+            bll.cadastrarEquipamento(codEquipamento, codSala, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Equipamento cadastrado para a sala");
         }
 
-        public void excluirEquipamento(int codEquipamentoSala)
+        [Route("sala/excluirEquipamento")]
+        [HttpDelete]
+        public HttpResponseMessage excluirEquipamento(int codEquipamentoSala)
         {
-            //dal.excluirEquipamento(codEquipamentoSala);
+            bll.excluirEquipamento(codEquipamentoSala, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Equipamento excluído");
         }
     }
 }
