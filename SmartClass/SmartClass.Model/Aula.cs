@@ -14,7 +14,18 @@ namespace SmartClass.Model
         public Disciplina Disciplina { get; set; }
         public int QtdMaxAlunos { get; set; }
         public String DsSemestre { get; set; }
+
+        public object listarAulas()
+        {
+            throw new NotImplementedException();
+            //deve ficar aqui?
+        }
+
         public Sala Sala { get; set; }
+        //deve ficar aqui?
+
         public List<Equipamento> Preferencias { get; set; }
+        //deve ficar aqui?
+
     }
 }

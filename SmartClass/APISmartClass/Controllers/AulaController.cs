@@ -1,37 +1,60 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
+using SmartClass.Model;
+using SmartClass.BLL;
 
 namespace APISmartClass.Controllers
 {
     [Serializable]
     public class AulaController : ApiController
     {
-        [Route("professor/sistemas/aulas")]
+
+        AulaBLL bll = new AulaBLL();
+        string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
+
+        [Route("aula/ListarAulas")]
         [HttpGet]
-        public HttpResponseMessage GetAulas()
+        public HttpResponseMessage ListarAulas()
         {
-            List<Aula> lstAula = new List<Aula>
-            {
-                new Aula { Sala = "B107", Hora = "21:00" },
-                new Aula { Sala = "B109", Hora = "22:00" }
-            };
-
-            string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
-
-            return Request.CreateResponse(HttpStatusCode.OK, lstAula);
+   
+                List <Aula> Lista = bll.ListarAulas(connection);
+                return Request.CreateResponse(HttpStatusCode.OK, Lista);
         }
 
-        public class Aula
+
+
+        [Route("aula/getAula")]
+        [HttpGet]
+        public HttpResponseMessage getAula(int CdAula)
         {
-            public string Sala { get; set; }
-            public string Hora { get; set; }
+            Aula aula = bll.getAula(CdAula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, aula);
         }
+
+
+        [Route("aula/cadastrarAula")]
+        [HttpGet]
+        public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
+        {
+            bll.cadastrarAula(CdAula, CdDisciplina, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Aula cadastrada");
+        }
+
+
+        [Route("aula/excluirAula")]
+        [HttpGet]
+        public HttpResponseMessage excluirAula(int CdAula)
+        {
+            bll.excluirAula(CdAula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Aula excluída");
+        }
+
+
+
     }
 }

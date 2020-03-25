@@ -26,7 +26,7 @@ namespace SmartClass.BLL
         {
             return dal.verificarDisponibilidade(codSala, horario, pConnectionString);
         }
-
+ 
         public Sala getSala(int cdSala, string pConnectionString)
         {
             return dal.getSala(cdSala, pConnectionString);
