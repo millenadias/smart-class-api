@@ -51,13 +51,21 @@ namespace APISmartClass.Controllers
         }
 
 
+        [Route("aula/alterarAula")]
+        [HttpPut]
+        public HttpResponseMessage alterarAula(Aula aula)
+        {
+            bll.alterarAula(aula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "A aula foi alterada!");
+        }
+
         [Route("aula/cadastrarAula")]
         [HttpPost]
-        public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
+        public HttpResponseMessage cadastrarAula(Aula aula)
         {
             try
             {
-                bll.cadastrarAula(CdAula, CdDisciplina, connection);
+                bll.cadastrarAula(aula, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, "A aula foi cadastrada!");
             }
             catch (Exception ex)
@@ -68,11 +76,11 @@ namespace APISmartClass.Controllers
 
         [Route("aula/cadastrarPreferenciaAula")]
         [HttpPost]
-        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento, int CdPreferenciaAula)
+        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento)
         {
             try
             {
-                bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, CdPreferenciaAula, connection);
+                bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
             }
             catch (Exception ex)
@@ -94,6 +102,14 @@ namespace APISmartClass.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
+        }
+
+        [Route("aula/excluirPreferenciaAula")]
+        [HttpDelete]
+        public HttpResponseMessage excluirPreferenciaAula(int CdPreferenciaAula)
+        {
+            bll.excluirPreferenciaAula(CdPreferenciaAula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Preferencia excluída");
         }
 
 
