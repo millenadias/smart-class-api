@@ -37,6 +37,7 @@ namespace SmartClass.DAL
 
         public List<Equipamento> ListarEquipamentos(int codSala, String pConnectionString)
         {
+
             List<Equipamento> lstEqptos = new List<Equipamento>();
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
@@ -57,6 +58,7 @@ namespace SmartClass.DAL
                 }
                 conn.Close();
             }
+            
 
             return lstEqptos;
         }
