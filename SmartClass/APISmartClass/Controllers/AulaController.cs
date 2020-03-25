@@ -21,9 +21,16 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage ListarAulas()
         {
-   
-                List <Aula> Lista = bll.ListarAulas(connection);
+
+            try
+            {
+                List<Aula> Lista = bll.ListarAulas(connection);
                 return Request.CreateResponse(HttpStatusCode.OK, Lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
 
@@ -32,8 +39,15 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage getAula(int CdAula)
         {
-            Aula aula = bll.getAula(CdAula, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, aula);
+            try
+            {
+                Aula aula = bll.getAula(CdAula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, aula);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
 
@@ -41,24 +55,45 @@ namespace APISmartClass.Controllers
         [HttpPost]
         public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
         {
-            bll.cadastrarAula(CdAula, CdDisciplina, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "A aula foi cadastrada!");
+            try
+            {
+                bll.cadastrarAula(CdAula, CdDisciplina, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "A aula foi cadastrada!");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("aula/cadastrarPreferenciaAula")]
         [HttpPost]
         public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento, int CdPreferenciaAula)
         {
-            bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, CdPreferenciaAula, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
+            try
+            {
+                bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, CdPreferenciaAula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("aula/excluirAula")]
         [HttpDelete]
         public HttpResponseMessage excluirAula(int CdAula)
         {
-            bll.excluirAula(CdAula, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Aula excluída");
+            try
+            {
+                bll.excluirAula(CdAula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Aula excluída");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
 

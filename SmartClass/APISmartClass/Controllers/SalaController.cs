@@ -18,8 +18,15 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage ListarSalas()
         {
-            List<Sala> Lista = bll.ListarSalas(connection);
-            return Request.CreateResponse(HttpStatusCode.OK, Lista);
+            try
+            {
+                List<Sala> Lista = bll.ListarSalas(connection);
+                return Request.CreateResponse(HttpStatusCode.OK, Lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
 
@@ -27,8 +34,15 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage ListarEquipamentos(int codSala)
         {
-            List<Equipamento> ListaEquipamento = bll.ListarEquipamentos(codSala, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, ListaEquipamento);
+            try
+            {
+                List<Equipamento> ListaEquipamento = bll.ListarEquipamentos(codSala, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, ListaEquipamento);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
 
@@ -36,8 +50,15 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage verificarDisponibilidade(int codSala, string horario)
         {
-            bool disponivel = bll.verificarDisponibilidade(codSala, horario, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, disponivel);
+            try
+            {
+                bool disponivel = bll.verificarDisponibilidade(codSala, horario, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, disponivel);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
 
         }
 
@@ -45,8 +66,15 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage getSala(int cdSala)
         {
-            Sala sala = bll.getSala(cdSala, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, sala);
+            try
+            {
+                Sala sala = bll.getSala(cdSala, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, sala);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
 
         }
 
@@ -54,16 +82,30 @@ namespace APISmartClass.Controllers
         [HttpPost]
         public HttpResponseMessage cadastrarEquipamento(int codEquipamento, int codSala)
         {
-            bll.cadastrarEquipamento(codEquipamento, codSala, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Equipamento cadastrado para a sala");
+            try
+            {
+                bll.cadastrarEquipamento(codEquipamento, codSala, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Equipamento cadastrado para a sala");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("sala/excluirEquipamento")]
         [HttpDelete]
         public HttpResponseMessage excluirEquipamento(int codEquipamentoSala)
         {
-            bll.excluirEquipamento(codEquipamentoSala, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Equipamento excluído");
+            try
+            {
+                bll.excluirEquipamento(codEquipamentoSala, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Equipamento excluído");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }

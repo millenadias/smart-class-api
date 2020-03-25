@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace APISmartClass.Controllers
 {
     [Serializable]
-    public class UsuarioController: ApiController
+    public class UsuarioController : ApiController
     {
         string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
 
@@ -19,45 +19,80 @@ namespace APISmartClass.Controllers
         [HttpGet]
         public HttpResponseMessage ValidarAcesso(String pDsLogin, String pDsSenha)
         {
-            UsuarioBLL bll = new UsuarioBLL();
-            bool acesso = bll.ValidarAcesso(pDsLogin, pDsSenha, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, acesso);
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                bool acesso = bll.ValidarAcesso(pDsLogin, pDsSenha, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, acesso);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("usuario/Get")]
         [HttpGet]
         public HttpResponseMessage Get(int pCdUsuario)
         {
-            UsuarioBLL bll = new UsuarioBLL();
-            Usuario user = bll.Get(pCdUsuario, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, user);
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                Usuario user = bll.Get(pCdUsuario, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("usuario/Cadastrar")]
         [HttpPost]
         public HttpResponseMessage Cadastrar(Usuario user)
         {
-            UsuarioBLL bll = new UsuarioBLL();
-            bll.Cadastrar(user, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Usuário Cadastrado");
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                bll.Cadastrar(user, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Usuário Cadastrado");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("usuario/GetAlunosTurma")]
         [HttpGet]
         public HttpResponseMessage GetAlunosTurma(int pCdTurma)
         {
-            UsuarioBLL bll = new UsuarioBLL();
-            List<Usuario> lstAlunos = bll.GetAlunosTurma(pCdTurma, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, lstAlunos);
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                List<Usuario> lstAlunos = bll.GetAlunosTurma(pCdTurma, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, lstAlunos);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         [Route("usuario/Alterar")]
         [HttpPut]
         public HttpResponseMessage Alterar(Usuario user)
         {
-            UsuarioBLL bll = new UsuarioBLL();
-            bll.Alterar(user, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "Usuário alterado");
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                bll.Alterar(user, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Usuário alterado");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }
