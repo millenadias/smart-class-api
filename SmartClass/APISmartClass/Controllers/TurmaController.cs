@@ -13,13 +13,15 @@ namespace APISmartClass.Controllers
     [Serializable]
     public class TurmaController: ApiController
     {
+        string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
+
         TurmaBLL bll = new TurmaBLL();
 
         [Route("turma/Inserir")]
         [HttpPost]
         public HttpResponseMessage Inserir(Turma turma)
         {
-            bll.Inserir(turma);
+            bll.Inserir(turma, connection);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -27,32 +29,26 @@ namespace APISmartClass.Controllers
         [HttpPost]
         public HttpResponseMessage InserirAlunoTurma(int pCdAluno, int pCdTurma)
         {
-            bll.InserirAlunoTurma(pCdAluno, pCdTurma);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            bll.InserirAlunoTurma(pCdAluno, pCdTurma, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Aluno cadastrado para a turma");
         }
 
         [Route("turma/AlterarTurma")]
-        [HttpPost]
+        [HttpPut]
         public HttpResponseMessage AlterarTurma(Turma turma)
         {
-            bll.AlterarTurma(turma);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            bll.AlterarTurma(turma, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Turma alterada");
         }
 
         [Route("turma/ListarTurmas")]
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage ListarTurmas()
-        {;
-            List<Turma> turmas = bll.ListarTurmas();
+        {
+            List<Turma> turmas = bll.ListarTurmas(connection);
             return Request.CreateResponse(HttpStatusCode.OK, turmas);
         }
 
-        [Route("turma/ListarAlunosTurma")]
-        [HttpPost]
-        public HttpResponseMessage ListarAlunosTurma(int pCdTurma)
-        {
-            List<Usuario> turmas = bll.ListarAlunosTurma(pCdTurma);
-            return Request.CreateResponse(HttpStatusCode.OK, turmas);
-        }
+        
     }
 }
