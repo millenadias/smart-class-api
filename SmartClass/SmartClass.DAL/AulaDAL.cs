@@ -69,7 +69,7 @@ namespace SmartClass.DAL
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
-                String sql = " INSERT INTO DISCIPLINA_AULA(cd_aula, cd_disciplina) " +
+                String sql = " INSERT INTO AULA(cd_aula, cd_disciplina) " +
                              " VALUES(" + CdAula + ", " + CdDisciplina + ")";
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
@@ -84,7 +84,7 @@ namespace SmartClass.DAL
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
-                String sql = " DELETE FROM DISCIPLINA_AULA WHERE cd_disciplina_aula = " + CdAula;
+                String sql = " DELETE FROM AULA WHERE cd_aula = " + CdAula;
 
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
@@ -92,15 +92,15 @@ namespace SmartClass.DAL
             }
         }
 
-        public List<Equipamento> cadastrarPreferenciaAula(int CdEquipamento, int CdAula, string DsEquipamento, string pConnectionString)
+        public List<Equipamento> cadastrarPreferenciaAula(int CdEquipamento, int CdAula, int CdPreferenciaAula, string pConnectionString)
         {
             List<Equipamento> cadastrarPreferenciaAula = new List<Equipamento>();
 
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
-                String sql = " INSERT INTO PREFERENCIA_AULA (cd_aula, cd_equipamento, ds_equipamento) " +
-                             " VALUES(" + CdEquipamento + "," + DsEquipamento + "," + CdAula + ")";
+                String sql = " INSERT INTO PREFERENCIA_AULA (cd_aula, cd_equipamento, cd_preferencia_aula) " +
+                             " VALUES(" + CdEquipamento + "," + CdPreferenciaAula + "," + CdAula + ")";
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
                 conn.Close();

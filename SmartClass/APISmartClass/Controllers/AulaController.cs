@@ -47,9 +47,9 @@ namespace APISmartClass.Controllers
 
         [Route("aula/cadastrarPreferenciaAula")]
         [HttpPost]
-        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento, string DsEquipamento, int CdDisciplina)
+        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento, int CdPreferenciaAula)
         {
-            bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, DsEquipamento, connection);
+            bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, CdPreferenciaAula, connection);
             return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
         }
 
