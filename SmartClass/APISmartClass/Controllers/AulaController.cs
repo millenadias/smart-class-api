@@ -1,23 +1,23 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
+using SmartClass.Model;
+using SmartClass.BLL;
 
 namespace APISmartClass.Controllers
 {
     [Serializable]
     public class AulaController : ApiController
     {
-        [Route("professor/sistemas/aulas")]
+        [Route("aula/ListarAulas")]
         [HttpGet]
-        public HttpResponseMessage GetAulas()
+        public HttpResponseMessage ListarAulas()
         {
-            List<Aula> lstAula = new List<Aula>
+            List<Aula> listarAulas = new List<Aula>
             {
                 new Aula { Sala = "B107", Hora = "21:00" },
                 new Aula { Sala = "B109", Hora = "22:00" }
@@ -28,10 +28,38 @@ namespace APISmartClass.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, lstAula);
         }
 
-        public class Aula
+
+        [Route("aula/getAula")]
+        [HttpGet]
+        public HttpResponseMessage getAula()
         {
-            public string Sala { get; set; }
-            public string Hora { get; set; }
+            //inserir getAula
         }
+
+
+        [Route("aula/cadastrarAula")]
+        [HttpGet]
+        public HttpResponseMessage cadastrarAula()
+        {
+            //inserir cadastrarAula
+        }
+
+
+        [Route("aula/editarAula")]
+        [HttpGet]
+        public HttpResponseMessage editarAula()
+        {
+            //inserir editarAula
+        }
+
+        [Route("aula/excluirAula")]
+        [HttpGet]
+        public HttpResponseMessage excluirAula()
+        {
+            //inserir excluirAula
+        }
+
+
+
     }
 }
