@@ -30,6 +30,7 @@ namespace SmartClass.BLL
         }
 
 
+
         public void excluirAula(int CdAula, String pConnectionString)
         {
             dal.excluirAula(CdAula, pConnectionString);

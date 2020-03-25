@@ -28,8 +28,6 @@ namespace SmartClass.DAL
                     info.CdAula = int.Parse(dr["cd_aula"].ToString());
                     info.DsHorario = dr["ds_horario"].ToString();
                     info.CdProfessor = int.Parse(dr["cd_professor"].ToString());
-                    info2.CdDisciplina = int.Parse(dr["cd_disciplina"].ToString());
-                    info2.DsDisciplina = dr["ds_disciplina"].ToString();
                     info.QtdMaxAlunos = int.Parse(dr["qtd_max_alunos"].ToString());
                     info.DsSemestre = dr["ds_semestre"].ToString();
 
@@ -39,7 +37,6 @@ namespace SmartClass.DAL
             }
             return listarAulas;
 
-            //verificar se deverá criar outro metodo de listarDisciplinas
         }
 
         public Aula getAula(int CdAula, string pConnectionString)
@@ -58,7 +55,7 @@ namespace SmartClass.DAL
                 {
                     aula.CdAula = int.Parse(dr["cd_aula"].ToString());
                     aula.DsHorario = dr["ds_horario"].ToString().Trim();
-                    aula.CdProfessor = int.Parse(dr["cd_orofessor"].ToString());
+                    aula.CdProfessor = int.Parse(dr["cd_professor"].ToString());
                     aula.QtdMaxAlunos = int.Parse(dr["qtd_max_alunos"].ToString());
                     aula.DsSemestre = dr["ds_semestre"].ToString().Trim();
                 }

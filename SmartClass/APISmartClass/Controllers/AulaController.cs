@@ -38,7 +38,7 @@ namespace APISmartClass.Controllers
 
 
         [Route("aula/cadastrarAula")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
         {
             bll.cadastrarAula(CdAula, CdDisciplina, connection);
@@ -46,8 +46,9 @@ namespace APISmartClass.Controllers
         }
 
 
+
         [Route("aula/excluirAula")]
-        [HttpGet]
+        [HttpDelete]
         public HttpResponseMessage excluirAula(int CdAula)
         {
             bll.excluirAula(CdAula, connection);
