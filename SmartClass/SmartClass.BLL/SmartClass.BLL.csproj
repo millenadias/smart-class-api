@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AulaBLL.cs" />
+    <Compile Include="EquipamentoBLL.cs" />
     <Compile Include="SalaBLL.cs" />
+    <Compile Include="TurmaBLL.cs" />
     <Compile Include="UsuarioBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
