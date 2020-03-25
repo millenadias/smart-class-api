@@ -64,20 +64,33 @@ namespace SmartClass.DAL
             return aula;
         }
 
-        public void cadastrarAula (int CdAula, int CdDisciplina, string pConnectionString)
+        public void alterarAula(Aula aula, string pConnectionString)
         {
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
-                String sql = " INSERT INTO AULA(cd_aula, cd_disciplina) " +
-                             " VALUES(" + CdAula + ", " + CdDisciplina + ")";
+                String sql = "UPDATE AULA SET ds_horario = '" + aula.DsHorario + "', cd_professor = " + aula.CdProfessor +
+                    ", cd_disciplina = " + aula.CdDisciplina + ", qtd_max_alunos = " + aula.QtdMaxAlunos + ", ds_semestre = '" +
+                    aula.DsSemestre + "',cd_sala = " + aula.CdSala + " WHERE cd_aula = " + aula.CdAula;
+                   
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
                 conn.Close();
             }
         }
-
-
+        public void cadastrarAula (Aula aula, string pConnectionString)
+        {
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " INSERT INTO AULA(ds_horario, cd_professor, cd_disciplina, qtd_max_alunos, ds_semestre, cd_sala) " +
+                             " VALUES('" + aula.DsHorario + "', " + aula.CdProfessor + ", " + aula.CdDisciplina  +
+                             ", " + aula.QtdMaxAlunos + ", '" + aula.DsSemestre + "', " + aula.CdSala + ")";
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
 
         public void excluirAula (int CdAula, string pConnectionString)
         {
@@ -92,20 +105,33 @@ namespace SmartClass.DAL
             }
         }
 
-        public List<Equipamento> cadastrarPreferenciaAula(int CdEquipamento, int CdAula, int CdPreferenciaAula, string pConnectionString)
+        public List<Equipamento> cadastrarPreferenciaAula(int CdEquipamento, int CdAula, string pConnectionString)
         {
             List<Equipamento> cadastrarPreferenciaAula = new List<Equipamento>();
 
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
-                String sql = " INSERT INTO PREFERENCIA_AULA (cd_aula, cd_equipamento, cd_preferencia_aula) " +
-                             " VALUES(" + CdEquipamento + "," + CdPreferenciaAula + "," + CdAula + ")";
+                String sql = " INSERT INTO PREFERENCIA_AULA (cd_aula, cd_equipamento) " +
+                             " VALUES(" + CdAula + "," + CdEquipamento + ")";
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
                 conn.Close();
             }
             return cadastrarPreferenciaAula;
+        }
+
+        public void excluirPreferenciaAula(int CdPreferenciaAula, String pConnectionString)
+        {
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " DELETE FROM PREFERENCIA_AULA WHERE cd_aula = " + CdPreferenciaAula;
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
     }

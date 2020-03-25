@@ -37,19 +37,27 @@ namespace APISmartClass.Controllers
         }
 
 
+        [Route("aula/alterarAula")]
+        [HttpPut]
+        public HttpResponseMessage alterarAula(Aula aula)
+        {
+            bll.alterarAula(aula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "A aula foi alterada!");
+        }
+
         [Route("aula/cadastrarAula")]
         [HttpPost]
-        public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
+        public HttpResponseMessage cadastrarAula(Aula aula)
         {
-            bll.cadastrarAula(CdAula, CdDisciplina, connection);
+            bll.cadastrarAula(aula, connection);
             return Request.CreateResponse(HttpStatusCode.OK, "A aula foi cadastrada!");
         }
 
         [Route("aula/cadastrarPreferenciaAula")]
         [HttpPost]
-        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento, int CdPreferenciaAula)
+        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento)
         {
-            bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, CdPreferenciaAula, connection);
+            bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, connection);
             return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
         }
 
@@ -59,6 +67,14 @@ namespace APISmartClass.Controllers
         {
             bll.excluirAula(CdAula, connection);
             return Request.CreateResponse(HttpStatusCode.OK, "Aula excluída");
+        }
+
+        [Route("aula/excluirPreferenciaAula")]
+        [HttpDelete]
+        public HttpResponseMessage excluirPreferenciaAula(int CdPreferenciaAula)
+        {
+            bll.excluirPreferenciaAula(CdPreferenciaAula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Preferencia excluída");
         }
 
 

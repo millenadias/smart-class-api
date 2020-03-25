@@ -9,6 +9,10 @@ namespace SmartClass.Model
     public class Aula
     {
         public int CdAula { get; set; }
+        public int CdDisciplina { get; set; }
+        public int CdSala { get; set; }
+
+
         public String DsHorario { get; set; }
         public int CdProfessor { get; set; }
         public Disciplina Disciplina { get; set; }

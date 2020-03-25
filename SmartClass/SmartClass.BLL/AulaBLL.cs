@@ -24,20 +24,30 @@ namespace SmartClass.BLL
             return dal.getAula(CdAula, pConnectionString);
         }
 
-        public void cadastrarAula(int CdAula, int CdDisciplina, String pConnectionString)
+        public void alterarAula(Aula aula, string pConnectionString)
         {
-            dal.cadastrarAula(CdAula, CdDisciplina, pConnectionString);
+            dal.alterarAula(aula, pConnectionString);
         }
 
-        public void cadastrarPreferenciaAula(int CdAula, int CdEquipamento, int CdPreferenciaAula, String pConnectionString)
+        public void cadastrarAula(Aula aula, String pConnectionString)
         {
-            dal.cadastrarPreferenciaAula(CdAula, CdEquipamento, CdPreferenciaAula, pConnectionString);
+            dal.cadastrarAula(aula, pConnectionString);
+        }
+
+        public void cadastrarPreferenciaAula(int CdAula, int CdEquipamento, String pConnectionString)
+        {
+            dal.cadastrarPreferenciaAula(CdAula, CdEquipamento, pConnectionString);
         }
 
 
         public void excluirAula(int CdAula, String pConnectionString)
         {
             dal.excluirAula(CdAula, pConnectionString);
+        }
+
+        public void excluirPreferenciaAula(int CdPreferenciaAula, String pConnectionString)
+        {
+            dal.excluirPreferenciaAula(CdPreferenciaAula, pConnectionString);
         }
     }
 }
