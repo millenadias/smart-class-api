@@ -13,35 +13,36 @@ namespace APISmartClass.Controllers
     [Serializable]
     public class AulaController : ApiController
     {
+
+        AulaBLL bll = new AulaBLL();
+        string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
+
         [Route("aula/ListarAulas")]
         [HttpGet]
         public HttpResponseMessage ListarAulas()
         {
-            List<Aula> listarAulas = new List<Aula>
-            {
-                new Aula { Sala = "B107", Hora = "21:00" },
-                new Aula { Sala = "B109", Hora = "22:00" }
-            };
-
-            string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
-
-            return Request.CreateResponse(HttpStatusCode.OK, lstAula);
+   
+                List <Aula> Lista = bll.ListarAulas(connection);
+                return Request.CreateResponse(HttpStatusCode.OK, Lista);
         }
+
 
 
         [Route("aula/getAula")]
         [HttpGet]
-        public HttpResponseMessage getAula()
+        public HttpResponseMessage getAula(int CdAula)
         {
-            //inserir getAula
+            Aula aula = bll.getAula(CdAula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, aula);
         }
 
 
         [Route("aula/cadastrarAula")]
         [HttpGet]
-        public HttpResponseMessage cadastrarAula()
+        public HttpResponseMessage cadastrarAula(int CdAula, int CdDisciplina)
         {
-            //inserir cadastrarAula
+            bll.cadastrarAula(CdAula, CdDisciplina, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Aula cadastrada");
         }
 
 
@@ -54,9 +55,10 @@ namespace APISmartClass.Controllers
 
         [Route("aula/excluirAula")]
         [HttpGet]
-        public HttpResponseMessage excluirAula()
+        public HttpResponseMessage excluirAula(int CdAula)
         {
-            //inserir excluirAula
+            bll.excluirAula(CdAula, connection);
+            return Request.CreateResponse(HttpStatusCode.OK, "Aula excluída");
         }
 
 

@@ -13,30 +13,26 @@ namespace SmartClass.BLL
         AulaDAL dal = new AulaDAL();
 
 
-        public List<Aula> ListarAulas()
+        public List<Aula> ListarAulas(String pConnectionString)
         {
-            return dal.ListarAulas();
+            return dal.ListarAulas(pConnectionString);
         }
 
 
-        public Aula getAula(int CdAula)
+        public Aula getAula(int CdAula, String pConnectionString)
         {
-            return dal.getAula(CdAula);
+            return dal.getAula(CdAula, pConnectionString);
         }
 
-        public void cadastrarAula(int CdAula)
+        public void cadastrarAula(int CdAula, int CdDisciplina, String pConnectionString)
         {
-            dal.cadastrarAula(CdAula);
+            dal.cadastrarAula(CdAula, CdDisciplina, pConnectionString);
         }
 
-        public void editarAula(int CdAula)
-        {
-            dal.editarAula(CdAula);
-        }
 
-        public void excluirAula(int CdAula)
+        public void excluirAula(int CdAula, String pConnectionString)
         {
-            dal.excluirAula(CdAula);
+            dal.excluirAula(CdAula, pConnectionString);
         }
     }
 }
