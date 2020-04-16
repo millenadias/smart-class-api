@@ -31,5 +31,16 @@ namespace SmartClass.BLL
         {
             return dal.ListarEquipamentos();
         }
+
+        public bool ligarEquipamento(int pCdEquipamento, int pCdAula, String pConnectionString)
+        {
+            int minutosParaUso =  dal.retornarMinutosUsoEqpto(pCdEquipamento, pCdAula, pConnectionString);
+
+            if (minutosParaUso <= 5 && minutosParaUso > 0)
+                return true;
+            else
+                return false;
+
+        }
     }
 }

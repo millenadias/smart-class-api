@@ -30,5 +30,28 @@ namespace SmartClass.DAL
 
             return new List<Equipamento>();
         }
+
+        public int retornarMinutosUsoEqpto(int pCdEquipamento, int pCdAula, String pConnectionString)
+        {
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+
+                String sql = " SELECT DATEDIFF(MI, GETDATE(), A.dt_aula) minutos " +
+                                         " FROM PREFERENCIA_AULA PA INNER JOIN AULA A ON A.cd_aula = PA.cd_aula " +
+                                         " WHERE cd_equipamento = " + pCdEquipamento + " AND A.cd_sala = " + pCdAula;
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                var retorno = sqlComando.ExecuteScalar();
+                conn.Close();
+
+                if (retorno == null)
+                    return 0;
+                else
+                     return int.Parse(retorno.ToString());
+                
+            }
+        }
+
     }
 }

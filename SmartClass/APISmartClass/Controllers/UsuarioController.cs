@@ -7,9 +7,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace APISmartClass.Controllers
 {
+    [EnableCors("*", "*", "GET,POST,PUT,DELETE,OPTIONS")]
     [Serializable]
     public class UsuarioController : ApiController
     {

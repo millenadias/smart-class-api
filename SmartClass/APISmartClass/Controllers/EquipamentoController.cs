@@ -14,6 +14,8 @@ namespace APISmartClass.Controllers
     public class EquipamentoController: ApiController
     {
         EquipamentoBLL bll = new EquipamentoBLL();
+        string connection = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
+
         [Route("equipamento/Inserir")]
         [HttpPost]
         public HttpResponseMessage Inserir(String pDsEquipamento)
@@ -45,5 +47,21 @@ namespace APISmartClass.Controllers
             List<Equipamento> lst = bll.ListarEquipamentos();
             return Request.CreateResponse(HttpStatusCode.OK, lst);
         }
+
+        [Route("equipamento/ligarEquipamento")]
+        [HttpGet]
+        public HttpResponseMessage ligarEquipamento(int CdAula, int CdEquipamento)
+        {
+            try
+            {
+                bool ligar = bll.ligarEquipamento(CdEquipamento, CdAula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "Ligar Equipamento: " + ligar.ToString());
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
     }
 }

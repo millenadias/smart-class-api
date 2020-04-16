@@ -105,7 +105,7 @@ namespace SmartClass.DAL
             }
         }
 
-        public List<Equipamento> cadastrarPreferenciaAula(int CdEquipamento, int CdAula, string pConnectionString)
+        public List<Equipamento> cadastrarPreferenciaAula(int CdAula, int CdEquipamento, string pConnectionString)
         {
             List<Equipamento> cadastrarPreferenciaAula = new List<Equipamento>();
 

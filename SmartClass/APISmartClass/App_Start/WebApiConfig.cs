@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace APISmartClass
 {
@@ -14,6 +15,8 @@ namespace APISmartClass
 
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
+
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
