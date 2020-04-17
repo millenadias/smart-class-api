@@ -8,10 +8,10 @@ namespace SmartClass.Model
 {
     public class Usuario
     {
-        public int CdUsuario { get; set; }
-        public String DsNome { get; set; }
-        public String DsLogin { get; set; }
-        public String DsSenha { get; set; }
-        public int CdTipoUsuario { get; set; }
+        public int cdUsuario { get; set; }
+        public String dsNome { get; set; }
+        public String dsLogin { get; set; }
+        public String dsSenha { get; set; }
+        public int cdTipoUsuario { get; set; }
     }
 }

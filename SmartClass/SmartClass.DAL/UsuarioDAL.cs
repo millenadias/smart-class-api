@@ -33,7 +33,7 @@ namespace SmartClass.DAL
             {
                 conn.Open();
                 String sql = " INSERT INTO USUARIO(ds_nome, ds_login, ds_senha, cd_tipo_usuario) " +
-                             " VALUES('" + user.DsNome + "', '" + user.DsLogin + "', '" + user.DsSenha + "', " + user.CdTipoUsuario + ")";
+                             " VALUES('" + user.dsNome + "', '" + user.dsLogin + "', '" + user.dsSenha + "', " + user.cdTipoUsuario + ")";
 
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
@@ -54,10 +54,35 @@ namespace SmartClass.DAL
 
                 if (dr.Read())
                 {
-                    user.CdUsuario = int.Parse(dr["cd_usuario"].ToString());
-                    user.DsNome = dr["ds_nome"].ToString().Trim();
-                    user.DsLogin = dr["ds_login"].ToString().Trim();
-                    user.CdTipoUsuario = int.Parse(dr["cd_tipo_usuario"].ToString());
+                    user.cdUsuario = int.Parse(dr["cd_usuario"].ToString());
+                    user.dsNome = dr["ds_nome"].ToString().Trim();
+                    user.dsLogin = dr["ds_login"].ToString().Trim();
+                    user.cdTipoUsuario = int.Parse(dr["cd_tipo_usuario"].ToString());
+                }
+                conn.Close();
+            }
+
+
+            return user;
+        }
+
+        public Usuario GetPorLoginSenha(String pDsLogin, String pDsSenha, String pConnectionString) 
+        {
+            Usuario user = new Usuario();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = "SELECT * FROM USUARIO WHERE ds_login = '" + pDsLogin.ToString() + "' AND ds_senha = '" + pDsSenha + "'";
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                DbDataReader dr = sqlComando.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    user.cdUsuario = int.Parse(dr["cd_usuario"].ToString());
+                    user.dsNome = dr["ds_nome"].ToString().Trim();
+                    user.dsLogin = dr["ds_login"].ToString().Trim();
+                    user.cdTipoUsuario = int.Parse(dr["cd_tipo_usuario"].ToString());
                 }
                 conn.Close();
             }
@@ -82,10 +107,10 @@ namespace SmartClass.DAL
                 while (dr.Read())
                 {
                     Usuario info = new Usuario();
-                    info.CdUsuario = int.Parse(dr["cd_usuario"].ToString());
-                    info.DsNome = dr["ds_nome"].ToString();
-                    info.DsLogin = dr["ds_login"].ToString();
-                    info.CdTipoUsuario = int.Parse(dr["cd_tipo_usuario"].ToString());
+                    info.cdUsuario = int.Parse(dr["cd_usuario"].ToString());
+                    info.dsNome = dr["ds_nome"].ToString();
+                    info.dsLogin = dr["ds_login"].ToString();
+                    info.cdTipoUsuario = int.Parse(dr["cd_tipo_usuario"].ToString());
                     lstUsuarios.Add(info);
                 }
                  conn.Close();
@@ -98,9 +123,9 @@ namespace SmartClass.DAL
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
-                String sql = " UPDATE USUARIO SET ds_nome = '" + user.DsNome + "', ds_login = '" + user.DsLogin + "', " +
-                             " ds_senha = '" + user.DsSenha + "', cd_tipo_usuario = " + user.CdTipoUsuario +
-                             " WHERE cd_usuario = " + user.CdUsuario;
+                String sql = " UPDATE USUARIO SET ds_nome = '" + user.dsNome + "', ds_login = '" + user.dsLogin + "', " +
+                             " ds_senha = '" + user.dsSenha + "', cd_tipo_usuario = " + user.cdTipoUsuario +
+                             " WHERE cd_usuario = " + user.cdUsuario;
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
                 conn.Close();

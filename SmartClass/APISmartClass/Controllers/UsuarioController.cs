@@ -20,7 +20,7 @@ namespace APISmartClass.Controllers
         [Route("usuario/validarAcesso")]
         [HttpGet]
         public HttpResponseMessage ValidarAcesso(String pDsLogin, String pDsSenha)
-        {
+            {
             try
             {
                 UsuarioBLL bll = new UsuarioBLL();
@@ -90,6 +90,22 @@ namespace APISmartClass.Controllers
                 UsuarioBLL bll = new UsuarioBLL();
                 bll.Alterar(user, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, "Usuário alterado");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [Route("usuario/GetPorLoginSenha")]
+        [HttpGet]
+        public HttpResponseMessage GetPorLoginSenha(String pDsLogin, String pDsSenha)
+        {
+            try
+            {
+                UsuarioBLL bll = new UsuarioBLL();
+                Usuario user = bll.GetPorLoginSenha(pDsLogin, pDsSenha, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, user);
             }
             catch (Exception ex)
             {

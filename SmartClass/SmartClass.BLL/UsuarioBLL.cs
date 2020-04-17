@@ -31,6 +31,12 @@ namespace SmartClass.BLL
             return dal.Get(pCdUsuario, pConnectionString);
         }
 
+        public Usuario GetPorLoginSenha(String pDsLogin, String pDsSenha, String pConnectionString)
+        {
+            return dal.GetPorLoginSenha(pDsLogin, pDsSenha, pConnectionString);
+
+        }
+
         public List<Usuario> GetAlunosTurma(int pCdTurma, String pConnectionString)
         {
             return dal.GetAlunosTurma(pCdTurma, pConnectionString);
