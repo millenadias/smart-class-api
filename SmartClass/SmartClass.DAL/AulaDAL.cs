@@ -134,5 +134,40 @@ namespace SmartClass.DAL
             }
         }
 
+        public List<Aula> ListarAulasProfessor(int pCdProfessor, String pConnectionString)
+        {
+            List<Aula> listarAulas = new List<Aula>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " SELECT AULA.*, U.ds_nome, SALA.ds_sala, D.ds_disciplina FROM AULA " +
+                             " INNER JOIN SALA ON SALA.cd_sala = AULA.cd_sala " +
+                             " INNER JOIN USUARIO U ON U.cd_usuario =  AULA.cd_professor " +
+                             " INNER JOIN DISCIPLINA D ON D.cd_disciplina = AULA.cd_disciplina " + 
+                             " WHERE dt_aula >= getdate() AND cd_professor = " + pCdProfessor;
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                DbDataReader dr = sqlComando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Aula info = new Aula();
+                    info.CdAula = int.Parse(dr["cd_aula"].ToString());
+                    info.DsSala = dr["ds_sala"].ToString();
+                    info.DsProfessor = dr["ds_nome"].ToString();
+                    info.DsHorario = dr["ds_horario"].ToString();
+                    info.CdProfessor = int.Parse(dr["cd_professor"].ToString());
+                    info.QtdMaxAlunos = int.Parse(dr["qtd_max_alunos"].ToString());
+                    info.DsSemestre = dr["ds_semestre"].ToString();
+                    info.DsDisciplina = dr["ds_disciplina"].ToString();
+                    info.DtAula = (dr["dt_aula"] != DBNull.Value ? DateTime.Parse(dr["dt_aula"].ToString()) : DateTime.MinValue);
+                    listarAulas.Add(info); 
+                }
+                conn.Close();
+            }
+            return listarAulas;
+
+        }
+
     }
 }

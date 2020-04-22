@@ -18,6 +18,10 @@ namespace SmartClass.BLL
             return dal.ListarAulas(pConnectionString);
         }
 
+        public List<Aula> ListarAulasProfessor(int pCdProfessor, String pConnectionString)
+        {
+            return dal.ListarAulasProfessor(pCdProfessor, pConnectionString);
+        }
 
         public Aula getAula(int CdAula, String pConnectionString)
         {

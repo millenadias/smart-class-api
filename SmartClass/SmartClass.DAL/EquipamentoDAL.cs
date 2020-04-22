@@ -1,6 +1,7 @@
 ﻿using SmartClass.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,52 @@ namespace SmartClass.DAL
             String sql = " DELETE FROM EQUIPAMENTO WHERE cd_equipamento = " + pCdEquipamento;
         }
 
-        public List<Equipamento> ListarEquipamentos()
+        public List<Equipamento> ListarEquipamentos(int pCdSala, String pConnectionString)
         {
-            String sql = " SELECT * FROM EQUIPAMENTO";
+            List<Equipamento> lstEquipamentos = new List<Equipamento>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " SELECT * FROM EQUIPAMENTO WHERE cd_sala = " + pCdSala;
 
-            return new List<Equipamento>();
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                DbDataReader dr = sqlComando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Equipamento info = new Equipamento();
+                    info.CdEquipamento = int.Parse(dr["cd_equipamento"].ToString());
+                    info.DsEquipamento = dr["ds_equipamento"].ToString();
+                    lstEquipamentos.Add(info);
+                }
+                conn.Close();
+            }
+            return lstEquipamentos;
+        }
+
+
+        public List<Disciplina> ListarDisciplinas(String pConnectionString)
+        {
+            List<Disciplina> lstDisciplinas = new List<Disciplina>();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = " SELECT * FROM DISCIPLINA";
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                DbDataReader dr = sqlComando.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Disciplina info = new Disciplina();
+                    info.CdDisciplina = int.Parse(dr["cd_disciplina"].ToString());
+                    info.DsDisciplina = dr["ds_disciplina"].ToString();
+                    lstDisciplinas.Add(info);
+                }
+                conn.Close();
+            }
+            return lstDisciplinas;
+
         }
 
         public int retornarMinutosUsoEqpto(int pCdEquipamento, int pCdAula, String pConnectionString)

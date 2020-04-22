@@ -33,6 +33,22 @@ namespace APISmartClass.Controllers
             }
         }
 
+        [Route("aula/ListarAulasProfessor")]
+        [HttpGet]
+        public HttpResponseMessage ListarAulasProfessor(int pCdProfessor)
+        {
+
+            try
+            {
+                List<Aula> Lista = bll.ListarAulasProfessor(pCdProfessor, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, Lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
 
 
         [Route("aula/getAula")]

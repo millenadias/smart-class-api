@@ -27,9 +27,9 @@ namespace SmartClass.BLL
             dal.Excluir(pCdEquipamento);
         }
 
-        public List<Equipamento> ListarEquipamentos()
+        public List<Equipamento> ListarEquipamentos(int pCdSala, String pConnectionString)
         {
-            return dal.ListarEquipamentos();
+            return dal.ListarEquipamentos(pCdSala, pConnectionString);
         }
 
         public bool ligarEquipamento(int pCdEquipamento, int pCdAula, String pConnectionString)

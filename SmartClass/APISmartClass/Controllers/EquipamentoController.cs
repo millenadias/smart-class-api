@@ -7,9 +7,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace APISmartClass.Controllers
 {
+    [EnableCors("*", "*", "GET,POST,PUT,DELETE,OPTIONS")]
     [Serializable]
     public class EquipamentoController: ApiController
     {
@@ -42,9 +44,9 @@ namespace APISmartClass.Controllers
 
         [Route("equipamento/ListarEquipamentos")]
         [HttpGet]
-        public HttpResponseMessage ListarEquipamentos()
+        public HttpResponseMessage ListarEquipamentos(int pCdSala)
         {
-            List<Equipamento> lst = bll.ListarEquipamentos();
+            List<Equipamento> lst = bll.ListarEquipamentos(pCdSala, connection);
             return Request.CreateResponse(HttpStatusCode.OK, lst);
         }
 
