@@ -23,6 +23,11 @@ namespace SmartClass.BLL
             return dal.ListarAulasProfessor(pCdProfessor, pConnectionString);
         }
 
+        public List<Aula> ListarAulasDiaProfessor(int pCdProfessor, String pConnectionString)
+        {
+            return dal.ListarAulasDiaProfessor(pCdProfessor, pConnectionString);
+
+        }
         public Aula getAula(int CdAula, String pConnectionString)
         {
             return dal.getAula(CdAula, pConnectionString);
@@ -33,14 +38,14 @@ namespace SmartClass.BLL
             dal.alterarAula(aula, pConnectionString);
         }
 
-        public void cadastrarAula(Aula aula, String pConnectionString)
+        public int cadastrarAula(Aula aula, String pConnectionString)
         {
-            dal.cadastrarAula(aula, pConnectionString);
+            return dal.cadastrarAula(aula, pConnectionString);
         }
 
-        public void cadastrarPreferenciaAula(int CdAula, int CdEquipamento, String pConnectionString)
+        public void cadastrarPreferenciasAula(int CdAula, List<int> equipamentos, String pConnectionString)
         {
-            dal.cadastrarPreferenciaAula(CdAula, CdEquipamento, pConnectionString);
+            dal.cadastrarPreferenciasAula(CdAula, equipamentos, pConnectionString);
         }
 
 
@@ -52,6 +57,16 @@ namespace SmartClass.BLL
         public void excluirPreferenciaAula(int CdPreferenciaAula, String pConnectionString)
         {
             dal.excluirPreferenciaAula(CdPreferenciaAula, pConnectionString);
+        }
+
+        public bool ValidarAulaPermitida(int pCdSala, DateTime pDtIni, DateTime pDtFim, String pConnectionString)
+        {
+            return dal.ValidarAulaPermitida(pCdSala, pDtIni, pDtFim, pConnectionString);
+        }
+
+        public List<int> ListarPreferencias(int pCdAula, String pConnectionString)
+        {
+            return dal.ListarPreferencias(pCdAula, pConnectionString);
         }
     }
 }

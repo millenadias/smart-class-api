@@ -49,6 +49,21 @@ namespace APISmartClass.Controllers
             }
         }
 
+        [Route("aula/ListarAulasDiaProfessor")]
+        [HttpGet]
+        public HttpResponseMessage ListarAulasDiaProfessor(int pCdProfessor)
+        {
+
+            try
+            {
+                List<Aula> Lista = bll.ListarAulasDiaProfessor(pCdProfessor, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, Lista);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
 
 
         [Route("aula/getAula")]
@@ -71,8 +86,16 @@ namespace APISmartClass.Controllers
         [HttpPut]
         public HttpResponseMessage alterarAula(Aula aula)
         {
-            bll.alterarAula(aula, connection);
-            return Request.CreateResponse(HttpStatusCode.OK, "A aula foi alterada!");
+            try
+            {
+                bll.alterarAula(aula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, "A aula foi alterada!");
+            }
+            catch (Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Aula não alterada.");
+                throw;
+            }
         }
 
         [Route("aula/cadastrarAula")]
@@ -81,22 +104,23 @@ namespace APISmartClass.Controllers
         {
             try
             {
-                bll.cadastrarAula(aula, connection);
-                return Request.CreateResponse(HttpStatusCode.OK, "A aula foi cadastrada!");
+                int codigoAula = bll.cadastrarAula(aula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, codigoAula);
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.OK, 0);
             }
         }
 
-        [Route("aula/cadastrarPreferenciaAula")]
+
+        [Route("aula/cadastrarPreferenciasAula")]
         [HttpPost]
-        public HttpResponseMessage cadastrarPreferenciaAula(int CdAula, int CdEquipamento)
+        public HttpResponseMessage cadastrarPreferenciasAula(int CdAula, int[] equipamentos)
         {
             try
             {
-                bll.cadastrarPreferenciaAula(CdAula, CdEquipamento, connection);
+                bll.cadastrarPreferenciasAula(CdAula, equipamentos.ToList(), connection);
                 return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
             }
             catch (Exception ex)
@@ -128,8 +152,37 @@ namespace APISmartClass.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "Preferencia excluída");
         }
 
+        [Route("aula/ValidarAulaPermitida")]
+        [HttpGet]
+        public HttpResponseMessage ValidarAulaPermitida(int cdSala, DateTime dtIni, DateTime dtFim)
+        {
+            try
+            {
+                bool aulaPermitida = bll.ValidarAulaPermitida(cdSala, dtIni, dtFim, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, aulaPermitida);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
 
-       
+        [Route("aula/ListarPreferencias")]
+        [HttpGet]
+        public HttpResponseMessage ListarPreferencias(int cdAula)
+        {
+            try
+            {
+                List<int> preferencias = bll.ListarPreferencias(cdAula, connection);
+                return Request.CreateResponse(HttpStatusCode.OK, preferencias);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+
 
     }
 }

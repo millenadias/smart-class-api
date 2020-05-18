@@ -23,13 +23,9 @@ namespace SmartClass.Model
         public String DsDisciplina { get; set; }
         public String DsProfessor { get; set; }
 
-        public DateTime DtAula { get; set; }
+        public DateTime DtAulaIni { get; set; }
+        public DateTime DtAulaFim { get; set; }
 
-       /*
-
-        public Sala Sala { get; set; }
-
-        public List<Equipamento> Preferencias { get; set; }*/
-
+        public int CdTurma { get; set; }
     }
 }
