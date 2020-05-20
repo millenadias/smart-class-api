@@ -59,9 +59,9 @@ namespace SmartClass.BLL
             dal.excluirPreferenciaAula(CdPreferenciaAula, pConnectionString);
         }
 
-        public bool ValidarAulaPermitida(int pCdSala, DateTime pDtIni, DateTime pDtFim, String pConnectionString)
+        public bool ValidarAulaPermitida(int pCdSala, DateTime pDtIni, DateTime pDtFim, int pCdAula, String pConnectionString)
         {
-            return dal.ValidarAulaPermitida(pCdSala, pDtIni, pDtFim, pConnectionString);
+            return dal.ValidarAulaPermitida(pCdSala, pDtIni, pDtFim, pCdAula, pConnectionString);
         }
 
         public List<int> ListarPreferencias(int pCdAula, String pConnectionString)

@@ -107,20 +107,20 @@ namespace APISmartClass.Controllers
                 int codigoAula = bll.cadastrarAula(aula, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, codigoAula);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, 0);
             }
         }
 
 
-        [Route("aula/cadastrarPreferenciasAula")]
+        [Route("aula/cadastrarPreferenciasAula/{cdAula:int}")]
         [HttpPost]
-        public HttpResponseMessage cadastrarPreferenciasAula(int CdAula, int[] equipamentos)
+        public HttpResponseMessage cadastrarPreferenciasAula(int cdAula, [FromBody]List<int> equipamentos)
         {
             try
             {
-                bll.cadastrarPreferenciasAula(CdAula, equipamentos.ToList(), connection);
+                bll.cadastrarPreferenciasAula(cdAula, equipamentos.ToList(), connection);
                 return Request.CreateResponse(HttpStatusCode.OK, "A preferência de aula foi cadastrada!");
             }
             catch (Exception ex)
@@ -154,11 +154,11 @@ namespace APISmartClass.Controllers
 
         [Route("aula/ValidarAulaPermitida")]
         [HttpGet]
-        public HttpResponseMessage ValidarAulaPermitida(int cdSala, DateTime dtIni, DateTime dtFim)
+        public HttpResponseMessage ValidarAulaPermitida(int cdSala, DateTime dtIni, DateTime dtFim, int cdAula)
         {
             try
             {
-                bool aulaPermitida = bll.ValidarAulaPermitida(cdSala, dtIni, dtFim, connection);
+                bool aulaPermitida = bll.ValidarAulaPermitida(cdSala, dtIni, dtFim, cdAula, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, aulaPermitida);
             }
             catch (Exception ex)
@@ -172,7 +172,7 @@ namespace APISmartClass.Controllers
         public HttpResponseMessage ListarPreferencias(int cdAula)
         {
             try
-            {
+           {
                 List<int> preferencias = bll.ListarPreferencias(cdAula, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, preferencias);
             }

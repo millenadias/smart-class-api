@@ -76,7 +76,9 @@ namespace SmartClass.DAL
                 conn.Open();
                 String sql = "UPDATE AULA SET ds_horario = '" + aula.DsHorario + "', cd_professor = " + aula.CdProfessor +
                     ", cd_disciplina = " + aula.CdDisciplina + ", qtd_max_alunos = " + aula.QtdMaxAlunos + ", ds_semestre = '" +
-                    aula.DsSemestre + "',cd_sala = " + aula.CdSala + ", cd_turma= " + aula.CdTurma + " WHERE cd_aula = " + aula.CdAula;
+                    aula.DsSemestre + "',cd_sala = " + aula.CdSala + ", cd_turma= " + aula.CdTurma +
+                    ", dt_aula_ini = (convert(datetime, '" + aula.DtAulaIni + "', 103)), dt_aula_fim = (convert(datetime, '" + aula.DtAulaFim + "', 103))" +
+                    " WHERE cd_aula = " + aula.CdAula;
 
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 sqlComando.ExecuteNonQuery();
@@ -126,11 +128,15 @@ namespace SmartClass.DAL
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
+                String delete = "DELETE FROM PREFERENCIA_AULA WHERE cd_aula = " + CdAula.ToString();
+                System.Data.SqlClient.SqlCommand sqlDelete = new System.Data.SqlClient.SqlCommand(delete, conn);
+                sqlDelete.ExecuteNonQuery();
 
                 foreach (var equip in equipamentos)
                 {
                     String sql = " INSERT INTO PREFERENCIA_AULA (cd_aula, cd_equipamento) " +
-                                 " VALUES(" + CdAula + "," + equip + ")"; System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                                 " VALUES(" + CdAula + "," + equip + ")"; 
+                    System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                     sqlComando.ExecuteNonQuery();
                 }
                 conn.Close();
@@ -222,7 +228,7 @@ namespace SmartClass.DAL
 
         }
 
-        public bool ValidarAulaPermitida(int pCdSala, DateTime pDtIni, DateTime pDtFim, String pConnectionString)
+        public bool ValidarAulaPermitida(int pCdSala, DateTime pDtIni, DateTime pDtFim, int pCdAula, String pConnectionString)
         {
             bool AulaPermitida = false;
 
@@ -234,6 +240,10 @@ namespace SmartClass.DAL
                              " WHERE (dt_aula_ini BETWEEN (convert(datetime, '" + pDtIni + "', 103)) AND (convert(datetime, '" + pDtFim + "', 103))" +
                              " OR dt_aula_fim BETWEEN (convert(datetime, '" + pDtIni + "', 103)) and (convert(datetime, '" + pDtFim + "', 103)))" +
                              " AND cd_sala = " + pCdSala;
+
+
+                if (pCdAula > 0)
+                    sql += " AND cd_aula <> " + pCdAula;
 
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
                 var countAula = sqlComando.ExecuteScalar();
