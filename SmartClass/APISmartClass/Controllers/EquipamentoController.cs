@@ -57,7 +57,7 @@ namespace APISmartClass.Controllers
             try
             {
                 bool ligar = bll.ligarEquipamento(CdEquipamento, CdSala, connection);
-                return Request.CreateResponse(HttpStatusCode.OK, "Ligar Equipamento: " + ligar.ToString());
+                return Request.CreateResponse(HttpStatusCode.OK, ligar);
             }
             catch (Exception ex)
             {
