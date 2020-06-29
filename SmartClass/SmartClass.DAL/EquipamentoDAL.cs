@@ -73,27 +73,62 @@ namespace SmartClass.DAL
 
         }
 
-        public int retornarMinutosUsoEqpto(int pCdEquipamento, int pCdAula, String pConnectionString)
+        public bool ligarEquipamento(int pCdEquipamento, int pCdSala, String pConnectionString)
         {
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
                 conn.Open();
 
-                String sql = " SELECT DATEDIFF(MI, GETDATE(), A.dt_aula) minutos " +
-                                         " FROM PREFERENCIA_AULA PA INNER JOIN AULA A ON A.cd_aula = PA.cd_aula " +
-                                         " WHERE cd_equipamento = " + pCdEquipamento + " AND A.cd_sala = " + pCdAula;
+                String sql = " SELECT DATEDIFF(MI, GETDATE(), A.dt_aula_ini) minutos, dt_aula_ini, dt_aula_fim " +
+                             " FROM PREFERENCIA_AULA PA INNER JOIN AULA A ON A.cd_aula = PA.cd_aula " +
+                             " WHERE cd_equipamento = " + pCdEquipamento + " AND A.cd_sala = " + pCdSala +
+                             " AND (GETDATE() < dt_aula_fim OR dt_aula_fim = GETDATE())";
 
+         
                 System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
-                var retorno = sqlComando.ExecuteScalar();
-                conn.Close();
+                DbDataReader dr = sqlComando.ExecuteReader();
 
-                if (retorno == null)
-                    return 0;
+                int minutosParaUso = 0;
+                DateTime dataIni = new DateTime();
+                DateTime dataFim = new DateTime();
+                if (dr.Read())
+                {
+                    minutosParaUso = int.Parse(dr["minutos"].ToString());
+                    dataIni = DateTime.Parse(dr["dt_aula_ini"].ToString());
+                    dataFim = DateTime.Parse(dr["dt_aula_fim"].ToString());
+                }
+
+                if (minutosParaUso <= 5 && minutosParaUso > 0)
+                    return true;
+                else if (DateTime.Now <= dataFim && DateTime.Now >= dataIni)
+                    return true;
                 else
-                     return int.Parse(retorno.ToString());
-                
+                    return false;
+
             }
         }
+
+        /* public Sala getSala(int cdSala, string pConnectionString)
+        {
+            Sala sala = new Sala();
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
+            {
+                conn.Open();
+                String sql = "SELECT * FROM SALA WHERE cd_sala = " + cdSala;
+
+                System.Data.SqlClient.SqlCommand sqlComando = new System.Data.SqlClient.SqlCommand(sql, conn);
+                DbDataReader dr = sqlComando.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    sala.CdSala = int.Parse(dr["cd_sala"].ToString());
+                    sala.DsSala = dr["ds_sala"].ToString().Trim();
+                    sala.DsBloco = dr["ds_bloco"].ToString().Trim();
+                }
+                conn.Close();
+            }
+            return sala;
+        }*/
 
     }
 }
