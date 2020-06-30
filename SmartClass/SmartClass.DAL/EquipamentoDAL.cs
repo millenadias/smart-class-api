@@ -73,7 +73,7 @@ namespace SmartClass.DAL
 
         }
 
-        public bool ligarEquipamento(int pCdEquipamento, int pCdSala, String pConnectionString)
+        public bool ligarEquipamento(int pCdEquipamento, String pConnectionString)
         {
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(pConnectionString))
             {
@@ -81,7 +81,7 @@ namespace SmartClass.DAL
 
                 String sql = " SELECT DATEDIFF(MI, GETDATE(), A.dt_aula_ini) minutos, dt_aula_ini, dt_aula_fim " +
                              " FROM PREFERENCIA_AULA PA INNER JOIN AULA A ON A.cd_aula = PA.cd_aula " +
-                             " WHERE cd_equipamento = " + pCdEquipamento + " AND A.cd_sala = " + pCdSala +
+                             " WHERE cd_equipamento = " + pCdEquipamento + 
                              " AND (GETDATE() < dt_aula_fim OR dt_aula_fim = GETDATE())";
 
          

@@ -52,11 +52,11 @@ namespace APISmartClass.Controllers
 
         [Route("equipamento/ligarEquipamento")]
         [HttpGet]
-        public HttpResponseMessage ligarEquipamento(int CdSala, int CdEquipamento)
+        public HttpResponseMessage ligarEquipamento(int CdEquipamento)
         {
             try
             {
-                bool ligar = bll.ligarEquipamento(CdEquipamento, CdSala, connection);
+                bool ligar = bll.ligarEquipamento(CdEquipamento, connection);
                 return Request.CreateResponse(HttpStatusCode.OK, ligar);
             }
             catch (Exception ex)
